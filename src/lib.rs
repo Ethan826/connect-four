@@ -11,12 +11,16 @@ pub use self::space::Space;
 #[derive(Debug)]
 pub enum GameError {
     InvalidGameDefinition,
+    InvalidGameState,
 }
 
 impl Error for GameError {}
 
 impl fmt::Display for GameError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Invalid game definition.")
+        match self {
+            GameError::InvalidGameDefinition => write!(f, "Invalid game definition."),
+            GameError::InvalidGameState => write!(f, "Invalid game state."),
+        }
     }
 }
